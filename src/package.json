@@ -1,0 +1,26 @@
+{
+  "name": "watchtower",
+  "version": "1.0.0",
+  "description": "watches running containers and checks docker hub for updates",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "David Jakowenko",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "better-sqlite3": "^7.0.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "moment-timezone": "^0.5.31",
+    "node-docker-api": "^1.1.22",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}
