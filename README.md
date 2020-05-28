@@ -1,6 +1,49 @@
 
+
 # Watchtower
-Used to watch docker containers and check for image updates on Docker Hub.
+Watch Docker containers and check for image updates on Docker Hub.
+
+This project was inspired by [containrrr/watchtower](https://github.com/containrrr/watchtower) and only watches for changes from the Docker Hub API versus pulling down the image to compare it.
+
+```shell
+docker logs watchtower 
+
+watching 18 containers @ 05/28/2020 11:35:05 EDT
+2 updates found:
+- jakowenko/watchtower:dev
+- oznu/homebridge:latest
+```
+
+
+## What triggers an update message?
+There are two ways an update message can be triggered.
+
+ - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
+ - If the `last_updated` value on Docker Hub changes while Watchtower is running.
+
+```json
+{
+	"last_updated": "2020-05-28T13:50:21.956701Z",
+	"last_updater_username": "jakowenko",
+	"name": "latest",
+	"images": [{
+		"architecture": "amd64",
+		"features": "",
+		"variant": null,
+		"digest": "sha256:487f599a500025a07cc5ffa580da8488865bae1682722e3c09121c4d0566c746",
+		"os": "linux",
+		"os_features": "",
+		"os_version": null,
+		"size": 380405997
+	}],
+	"repository": 9138104,
+	"full_size": 380405997,
+	"v2": true,
+	...
+}
+```
+
+
 
 ## Usage
 
@@ -11,8 +54,6 @@ docker run \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   jakowenko/watchtower
 ```
-
-**docker-compose.yml**
 
 ```yaml
 version: '3.7'
