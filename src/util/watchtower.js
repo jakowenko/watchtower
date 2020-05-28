@@ -18,8 +18,8 @@ module.exports.run = async () => {
 
   db.init();
   const watching = db.insert(containers);
-  const message = `watching ${watching.length} ${(watching.length === 1) ? 'container' : 'containers'} @ ${time}`;
-  notify.log(`\n${message}`);
+  const message = `${(config.isStarted) ? '\n' : ''}[${time}] - watching ${watching.length} ${(watching.length === 1) ? 'container' : 'containers'}`;
+  notify.log(message);
 
   if (!config.isStarted && config.type === 'http') {
     await notify.post(config, message);
