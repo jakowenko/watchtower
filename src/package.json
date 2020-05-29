@@ -1,6 +1,6 @@
 {
   "name": "watchtower",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "watches running containers and checks docker hub for updates",
   "main": "app.js",
   "scripts": {
