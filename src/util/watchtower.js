@@ -3,27 +3,17 @@ const { Docker } = require('node-docker-api');
 const moment = require('moment-timezone');
 const db = require('./db');
 const notify = require('./notify');
-
-const config = {};
+const config = require('./config')();
 
 module.exports.run = async () => {
-  config.tz = process.env.TZ;
-  config.type = process.env.NOTIFY_TYPE;
-  config.httpUrl = process.env.NOTIFY_HTTP_URL;
-  config.subject = (process.env.NOTIFY_SUBJECT === undefined) ? 'Watch' : process.env.NOTIFY_SUBJECT;
-
-  const time = (config.tz === undefined || config.tz === '' || config.tz.toLowerCase() === 'utc') ? moment().utc().format('MM/DD/YYYY HH:mm:ss UTC') : moment().tz(config.tz).format('MM/DD/YYYY HH:mm:ss z');
+  const time = (config.TZ.toLowerCase() === 'utc') ? moment().utc().format('MM/DD/YYYY HH:mm:ss UTC') : moment().tz(config.TZ).format('MM/DD/YYYY HH:mm:ss z');
   const docker = new Docker({ socketPath: '/var/run/docker.sock' });
   const containers = await docker.container.list();
 
   db.init();
   const watching = db.insert(containers);
-  const message = `${(config.isStarted) ? '\n' : ''}[${time}] - watching ${watching.length} ${(watching.length === 1) ? 'container' : 'containers'}`;
-  notify.log(message);
-
-  if (!config.isStarted && config.type === 'http') {
-    await notify.post(config, message);
-  }
+  config.status = `${(config.isStarted) ? '\n' : ''}watching ${watching.length} ${(watching.length === 1) ? 'container' : 'containers'} @ ${time}`;
+  notify.log(config.status);
 
   const activeImages = db.select();
   if (activeImages.length) {
@@ -45,8 +35,16 @@ module.exports.check = async () => {
   const updates = images.map((image) => image.image);
   const message = `${updates.length} ${(updates.length === 1) ? 'update' : 'updates'} found:\n- ${updates.join('\n- ')}`;
   notify.log(message);
-  if (config.type === 'http') {
-    await notify.post(config, message);
+
+  switch (config.NOTIFY_TYPE) {
+    case 'http':
+      await notify.post(config, message);
+      break;
+    case 'email':
+      await notify.email(config, message);
+      break;
+    default:
+      break;
   }
 };
 
