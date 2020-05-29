@@ -31,15 +31,17 @@ module.exports.check = async () => {
   const message = (!images.length) ? 'no updates found' : `${updates.length} ${(updates.length === 1) ? 'update' : 'updates'} found:\n- ${updates.join('\n- ')}`;
   notify.log(message);
 
-  switch (config.NOTIFY_TYPE) {
-    case 'http':
-      await notify.post(config, message);
-      break;
-    case 'email':
-      await notify.email(config, message);
-      break;
-    default:
-      break;
+  if (images.length || !config.isStarted) {
+    switch (config.NOTIFY_TYPE) {
+      case 'http':
+        await notify.post(config, message);
+        break;
+      case 'email':
+        await notify.email(config, message);
+        break;
+      default:
+        break;
+    }
   }
 };
 
