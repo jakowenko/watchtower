@@ -14,13 +14,14 @@ watching 18 containers @ 05/28/2020 11:35:05 EDT
 - oznu/homebridge:latest
 ```
 
-## What triggers an update message?
+## What triggers a notification?
 There are two ways an update message can be triggered.
 
  - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
  - If the `last_updated` value on Docker Hub changes while Watchtower is running.
-
+ - 
 ```json
+/* Docker Hub API v2 Sample Response Snippet */
 {
 	"last_updated": "2020-05-28T13:50:21.956701Z",
 	"last_updater_username": "jakowenko",
@@ -41,7 +42,16 @@ There are two ways an update message can be triggered.
 }
 ```
 
+Setting a valid `NOTIFY_TYPE` will result in a notification if either of the above conditions are met.
 
+If `NOTIFY_TYPE` is set to `http` then notifications will be sent with the POSTed to `NOTIFY_HTTP_URL` with the following payload:
+
+```json
+{
+	"title": NOTIFY_SUBJECT,
+	"text": message,
+}
+```
 
 ## Usage
 
@@ -76,9 +86,15 @@ services:
 | WATCH_ALL | `false` | Watch all running containers |
 | TZ | `UTC` |Timezone used in logs |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
-| NOTIFY_TYPE ||Type of notification: `http` |
+| NOTIFY_TYPE ||Type of notification: `http`, `email` |
+| NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
-| NOTIFY_SUBJECT | `Watch` | Subject value passed in notification |
+| NOTIFY_EMAIL_HOST || SMTP server to send e-mails |
+| NOTIFY_EMAIL_PORT | 587 | Port used to connect to the SMTP server |
+| NOTIFY_EMAIL_USERNAME || Username to authenticate with the SMTP server |
+| NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
+| NOTIFY_EMAIL_FROM_NAME | `Notify` | Sender name for the email notifications |
+| NOTIFY_EMAIL_TO || Email address to which notifications will be sent |
 
 ## Labels
 
