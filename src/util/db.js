@@ -42,7 +42,6 @@ module.exports.insert = (containers) => {
 
   containers.forEach((container) => {
     if ((process.env.WATCH_ALL === 'true' || container.data.Labels['watchtower.enable'] === 'true') && container.data.Labels['watchtower.enable'] !== 'false') {
-      // console.log(container);
       const item = { ...insertItem };
       item.createdAt = moment.unix(container.data.Created).utc().format();
       item.image = container.data.Image;

@@ -1,5 +1,3 @@
-
-
 # Watchtower
 Watch Docker containers and check for image updates on Docker Hub.
 
@@ -14,14 +12,14 @@ watching 18 containers @ 05/28/2020 11:35:05 EDT
 - oznu/homebridge:latest
 ```
 
-
-## What triggers an update message?
-There are two ways an update message can be triggered.
+## What triggers notifications?
+There are currently two ways notifications can be triggered.
 
  - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
  - If the `last_updated` value on Docker Hub changes while Watchtower is running.
 
 ```json
+/* Docker Hub API v2 Sample Response Snippet */
 {
 	"last_updated": "2020-05-28T13:50:21.956701Z",
 	"last_updater_username": "jakowenko",
@@ -30,7 +28,6 @@ There are two ways an update message can be triggered.
 		"architecture": "amd64",
 		"features": "",
 		"variant": null,
-		"digest": "sha256:487f599a500025a07cc5ffa580da8488865bae1682722e3c09121c4d0566c746",
 		"os": "linux",
 		"os_features": "",
 		"os_version": null,
@@ -38,12 +35,20 @@ There are two ways an update message can be triggered.
 	}],
 	"repository": 9138104,
 	"full_size": 380405997,
-	"v2": true,
-	...
+	"v2": true
 }
 ```
 
+Setting a valid `NOTIFY_TYPE` will result in a notification if either of the above conditions are met.
 
+If `NOTIFY_TYPE` is set to `http` then notifications will be sent with the POSTed to `NOTIFY_HTTP_URL` with the following payload:
+
+```json
+{
+	"title": "Watchtower",
+	"text": "Sample notification message"
+}
+```
 
 ## Usage
 
@@ -78,9 +83,15 @@ services:
 | WATCH_ALL | `false` | Watch all running containers |
 | TZ | `UTC` |Timezone used in logs |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
-| NOTIFY_TYPE ||Type of notification: `http` |
+| NOTIFY_TYPE ||Type of notification: `http`, `email` |
+| NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
-| NOTIFY_SUBJECT | `Watch` | Subject value passed in notification |
+| NOTIFY_EMAIL_HOST || SMTP server to send emails |
+| NOTIFY_EMAIL_PORT | 587 | Port used to connect to the SMTP server |
+| NOTIFY_EMAIL_USERNAME || Username to authenticate with the SMTP server |
+| NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
+| NOTIFY_EMAIL_FROM_NAME | `Notify` | Sender name for the email notifications |
+| NOTIFY_EMAIL_TO || Email address to which notifications will be sent |
 
 ## Labels
 
