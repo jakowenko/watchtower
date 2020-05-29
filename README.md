@@ -35,8 +35,7 @@ There are currently two ways notifications can be triggered.
 	}],
 	"repository": 9138104,
 	"full_size": 380405997,
-	"v2": true,
-	...
+	"v2": true
 }
 ```
 
@@ -46,8 +45,8 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be sent with the POSTe
 
 ```json
 {
-	"title": NOTIFY_SUBJECT,
-	"text": message,
+	"title": "Watchtower",
+	"text": "Sample notification message"
 }
 ```
 
