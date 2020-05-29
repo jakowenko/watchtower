@@ -27,13 +27,8 @@ module.exports.run = async () => {
 
 module.exports.check = async () => {
   const images = db.updatedImages();
-  if (!images.length) {
-    notify.log('no updates found');
-    return;
-  }
-
   const updates = images.map((image) => image.image);
-  const message = `${updates.length} ${(updates.length === 1) ? 'update' : 'updates'} found:\n- ${updates.join('\n- ')}`;
+  const message = (!images.length) ? 'no updates found' : `${updates.length} ${(updates.length === 1) ? 'update' : 'updates'} found:\n- ${updates.join('\n- ')}`;
   notify.log(message);
 
   switch (config.NOTIFY_TYPE) {
