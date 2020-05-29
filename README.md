@@ -1,4 +1,4 @@
-
+<img src="https://jakowenko.com/watchtower/push.jpg" width="325" align="right">
 
 # Watchtower
 Watch Docker containers and check for image updates on Docker Hub.
@@ -13,7 +13,6 @@ watching 18 containers @ 05/28/2020 11:35:05 EDT
 - jakowenko/watchtower:dev
 - oznu/homebridge:latest
 ```
-
 
 ## What triggers an update message?
 There are two ways an update message can be triggered.
@@ -30,7 +29,6 @@ There are two ways an update message can be triggered.
 		"architecture": "amd64",
 		"features": "",
 		"variant": null,
-		"digest": "sha256:487f599a500025a07cc5ffa580da8488865bae1682722e3c09121c4d0566c746",
 		"os": "linux",
 		"os_features": "",
 		"os_version": null,
