@@ -1,5 +1,3 @@
-<img src="https://jakowenko.com/watchtower/push.jpg" width="325" align="right">
-
 # Watchtower
 Watch Docker containers and check for image updates on Docker Hub.
 
@@ -19,7 +17,7 @@ There are currently two ways notifications can be triggered.
 
  - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
  - If the `last_updated` value on Docker Hub changes while Watchtower is running.
- - 
+
 ```json
 /* Docker Hub API v2 Sample Response Snippet */
 {
@@ -89,7 +87,7 @@ services:
 | NOTIFY_TYPE ||Type of notification: `http`, `email` |
 | NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
-| NOTIFY_EMAIL_HOST || SMTP server to send e-mails |
+| NOTIFY_EMAIL_HOST || SMTP server to send emails |
 | NOTIFY_EMAIL_PORT | 587 | Port used to connect to the SMTP server |
 | NOTIFY_EMAIL_USERNAME || Username to authenticate with the SMTP server |
 | NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
