@@ -14,8 +14,8 @@ watching 18 containers @ 05/28/2020 11:35:05 EDT
 - oznu/homebridge:latest
 ```
 
-## What triggers a notification?
-There are two ways an update message can be triggered.
+## What triggers notifications?
+There are currently two ways notifications can be triggered.
 
  - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
  - If the `last_updated` value on Docker Hub changes while Watchtower is running.
