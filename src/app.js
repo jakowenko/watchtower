@@ -1,7 +1,5 @@
-const dotenv = require('dotenv');
+require('dotenv').config();
 const watchtower = require('./util/watchtower');
-
-dotenv.config();
 
 const timer = (process.env.TIMER === undefined) ? 30 : parseFloat(process.env.TIMER);
 
