@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Docker } = require('node-docker-api');
+const Docker = require('dockerode');
 const moment = require('moment-timezone');
 const db = require('./db');
 const notify = require('./notify');
@@ -8,7 +8,7 @@ const config = require('./config')();
 module.exports.run = async () => {
   const time = (config.TZ.toLowerCase() === 'utc') ? moment().utc().format('MM/DD/YYYY HH:mm:ss UTC') : moment().tz(config.TZ).format('MM/DD/YYYY HH:mm:ss z');
   const docker = new Docker({ socketPath: '/var/run/docker.sock' });
-  const containers = await docker.container.list();
+  const containers = await docker.listContainers();
 
   db.init();
   const watching = db.insert(containers);
