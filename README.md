@@ -41,7 +41,7 @@ There are currently two ways notifications can be triggered.
 
 Setting a valid `NOTIFY_TYPE` will result in a notification if either of the above conditions are met.
 
-If `NOTIFY_TYPE` is set to `http` then notifications will be sent with the POSTed to `NOTIFY_HTTP_URL` with the following payload:
+If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_HTTP_URL` with the following payload:
 
 ```json
 {
