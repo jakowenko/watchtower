@@ -5,14 +5,14 @@ const db = require('./db');
 const notify = require('./notify');
 const config = require('./config')();
 
-process.stdin.setEncoding('utf8');
-process.stdin.on('readable', () => {
-  const request = process.stdin.read().replace(/\W/g, '');
-  if (request === 'watching') {
-    const activeImages = db.select();
-    console.log(activeImages);
-  }
-});
+// process.stdin.setEncoding('utf8');
+// process.stdin.on('readable', () => {
+//   const request = (process.stdin.read() !== null) ? process.stdin.read().replace(/\W/g, '') : process.stdin.read();
+//   if (request === 'watching') {
+//     const activeImages = db.select();
+//     console.log(activeImages);
+//   }
+// });
 
 module.exports.run = async () => {
   const time = (config.TZ.toLowerCase() === 'utc') ? moment().utc().format('MM/DD/YYYY HH:mm:ss UTC') : moment().tz(config.TZ).format('MM/DD/YYYY HH:mm:ss z');
