@@ -27,7 +27,7 @@ module.exports.run = async () => {
 
 module.exports.check = async () => {
   const images = db.updatedImages();
-  const updates = images.map((image) => image.image);
+  const updates = images.map((image, i) => `${image.image} | ${moment(image.dockerHubLastUpdated).fromNow()}${(i > 0) ? '\n' : ''}`);
   const message = (!images.length) ? 'no updates found' : `${updates.length} ${(updates.length === 1) ? 'update' : 'updates'} found:\n- ${updates.join('\n- ')}`;
   notify.log(message);
 
