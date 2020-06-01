@@ -41,10 +41,10 @@ module.exports.insert = (containers) => {
   let images = [];
 
   containers.forEach((container) => {
-    if ((process.env.WATCH_ALL === 'true' || container.data.Labels['watchtower.enable'] === 'true') && container.data.Labels['watchtower.enable'] !== 'false') {
+    if ((process.env.WATCH_ALL === 'true' || container.Labels['watchtower.enable'] === 'true') && container.Labels['watchtower.enable'] !== 'false') {
       const item = { ...insertItem };
-      item.createdAt = moment.unix(container.data.Created).utc().format();
-      item.image = container.data.Image;
+      item.createdAt = moment.unix(container.Created).utc().format();
+      item.image = container.Image;
       images.push(item);
     }
   });
