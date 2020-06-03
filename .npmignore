@@ -1,0 +1,9 @@
+lib/test.js
+.dockerignore
+Dockerfile
+.DS_Store
+node_modules
+package-lock.json
+.env
+.eslintrc.js
+dist/

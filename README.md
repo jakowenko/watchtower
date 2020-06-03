@@ -1,15 +1,56 @@
+
 # Watchtower
 Watch Docker containers and check for image updates on Docker Hub.
 
 This project was inspired by [containrrr/watchtower](https://github.com/containrrr/watchtower) and only watches for changes from the Docker Hub API versus pulling down the image to compare it.
 
 ```shell
-docker logs watchtower 
-
-watching 18 containers @ 05/28/2020 11:35:05 EDT
+watching 5 containers @ 06/03/2020 05:09:33 UTC
+----------------------------------------------
 2 updates found:
-- jakowenko/watchtower:dev
-- oznu/homebridge:latest
+  * portainer/portainer:latest | a day ago
+  * jakowenko/watchtower:dev | 13 minutes ago
+```
+
+## Install
+
+**Node.js**
+`npm install watchtower-docker`
+
+**Docker**
+`docker pull jakowenko/watchtower`
+
+## Usage
+
+**Node.js**
+```js
+const watchtower = require('watchtower-docker');
+
+watchtower.run();
+```
+
+**Docker**
+```shell
+docker run \
+  --name=watchtower \
+  -e WATCH_ALL=true \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  jakowenko/watchtower
+```
+
+```yaml
+version: '3.7'
+
+services:
+  watchtower:
+    container_name: watchtower
+    image: jakowenko/watchtower
+    restart: unless-stopped
+    environment:
+      WATCH_ALL: 'true'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - $PWD/watchtower:/usr/src/data # optional for persistent database
 ```
 
 ## What triggers notifications?
@@ -50,44 +91,20 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 }
 ```
 
-## Usage
-
-```shell
-docker run \
-  --name=watchtower \
-  -e WATCH_ALL=true \
-  -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  jakowenko/watchtower
-```
-
-```yaml
-version: '3.7'
-
-services:
-  watchtower:
-    container_name: watchtower
-    image: jakowenko/watchtower
-    restart: unless-stopped
-    environment:
-      WATCH_ALL: 'true'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - $PWD/watchtower:/usr/src/data # optional for persistent database
-```
-
 ## Options
 
 | Name | Default | Description |
 |--|--|--|
-| TIMER | `30` | Time in minutes before rechecking containers |
 | WATCH_ALL | `false` | Watch all running containers |
+| TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
+| DB_MEMORY | `false` | Whether to store the database in memory or on disk |
 | TZ | `UTC` |Timezone used in logs |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
 | NOTIFY_TYPE ||Type of notification: `http`, `email` |
 | NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
 | NOTIFY_EMAIL_HOST || SMTP server to send emails |
-| NOTIFY_EMAIL_PORT | 587 | Port used to connect to the SMTP server |
+| NOTIFY_EMAIL_PORT | `587` | Port used to connect to the SMTP server |
 | NOTIFY_EMAIL_USERNAME || Username to authenticate with the SMTP server |
 | NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
 | NOTIFY_EMAIL_FROM_NAME | `Notify` | Sender name for the email notifications |

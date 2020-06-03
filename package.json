@@ -1,0 +1,39 @@
+{
+  "name": "watchtower-docker",
+  "version": "1.1.4",
+  "description": "watches running containers and checks docker hub for updates",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./lib/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakowenko/watchtower.git"
+  },
+  "keywords": [
+    "docker",
+    "kubernetes",
+    "watchtower",
+    "monitoring",
+    "dockerhub",
+    "notifications"
+  ],
+  "author": "David Jakowenko",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "better-sqlite3": "^7.0.1",
+    "dockerode": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "moment-timezone": "^0.5.31",
+    "nodemailer": "^6.4.8"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.4"
+  }
+}
