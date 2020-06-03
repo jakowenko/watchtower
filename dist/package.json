@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "watchtower-docker": "^1.1.4"
+    "watchtower-docker": "^1.1.5"
   }
 }
