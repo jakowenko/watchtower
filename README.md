@@ -1,5 +1,9 @@
+[![NPM Version](https://flat.badgen.net/npm/v/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
+[![NPM Downloads](https://flat.badgen.net/npm/dt/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
+[![Docker Pulls](https://flat.badgen.net/docker/pulls/jakowenko/watchtower)](https://hub.docker.com/r/jakowenko/watchtower)
 
 # Watchtower
+
 Watch Docker containers and check for image updates on Docker Hub.
 
 This project was inspired by [containrrr/watchtower](https://github.com/containrrr/watchtower) and only watches for changes from the Docker Hub API versus pulling down the image to compare it.
