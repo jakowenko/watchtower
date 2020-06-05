@@ -1,6 +1,6 @@
 {
   "name": "watchtower-docker",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0-beta.2",
   "description": "watches running containers and checks docker hub for updates",
   "main": "./lib/index.js",
   "files": [
