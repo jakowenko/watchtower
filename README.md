@@ -54,7 +54,6 @@ services:
       WATCH_ALL: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - $PWD/watchtower:/usr/src/data # optional for persistent database
 ```
 
 ## What triggers notifications?
@@ -100,8 +99,9 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 | Name | Default | Description |
 |--|--|--|
 | WATCH_ALL | `false` | Watch all running containers |
+| AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and restart the container with the same configuration |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
-| DB_MEMORY | `false` | Whether to store the database in memory or on disk |
+| DB_MEMORY | `true` | Whether to store the database in memory or on disk |
 | TZ | `UTC` |Timezone used in logs |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
 | NOTIFY_TYPE ||Type of notification: `http`, `email` |
