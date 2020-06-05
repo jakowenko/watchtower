@@ -4,5 +4,5 @@ VOLUME /user/watchtower/data
 WORKDIR /usr/watchtower
 COPY index.js /usr/watchtower/
 RUN npm init -y
-RUN npm install watchtower-docker
+RUN npm install watchtower-docker@beta
 CMD ["node", "index.js"]
