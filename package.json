@@ -29,6 +29,7 @@
     "better-sqlite3": "^7.0.1",
     "dockerode": "^3.2.0",
     "dotenv": "^8.2.0",
+    "execution-time": "^1.4.1",
     "fs": "0.0.1-security",
     "moment-timezone": "^0.5.31",
     "nodemailer": "^6.4.8",
