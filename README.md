@@ -9,11 +9,13 @@ Watch Docker containers and check for image updates on Docker Hub.
 This project was inspired by [containrrr/watchtower](https://github.com/containrrr/watchtower) and only watches for changes from the Docker Hub API versus pulling down the image to compare it.
 
 ```shell
-watching 5 containers @ 06/03/2020 05:09:33 UTC
-----------------------------------------------
+-----------------------------------------------
+watching 8 containers @ 06/05/2020 04:50:49 UTC
+-----------------------------------------------
 2 updates found:
-  * portainer/portainer:latest | a day ago
-  * jakowenko/watchtower:dev | 13 minutes ago
+-----------------------------------------------
+* jakowenko/watchtower:latest | 2 days ago
+* portainer/portainer:latest | 3 days ago
 ```
 
 ## Install
