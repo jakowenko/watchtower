@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "better-sqlite3": "^7.0.1",
+    "chalk": "^4.0.0",
     "dockerode": "^3.2.0",
     "dotenv": "^8.2.0",
     "execution-time": "^1.4.1",
@@ -36,9 +37,9 @@
     "pluralize": "^8.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
+    "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-import": "^2.21.0",
     "nodemon": "^2.0.4"
   }
 }
