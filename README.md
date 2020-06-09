@@ -120,7 +120,8 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 | AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and restart the container with the same configuration |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
 | DB_MEMORY | `true` | Whether to store the database in memory or on disk |
-| TZ | `UTC` |Timezone used in logs |
+| TZ | `UTC` | Timezone used in logs |
+| TIME_FORMAT | `MM/DD/YYYY hh:mm:ss` | Format of time used in logging and notifications |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
 | NOTIFY_TYPE ||Type of notification: `http`, `email` |
 | NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
