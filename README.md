@@ -1,36 +1,33 @@
-
 [![NPM Version](https://flat.badgen.net/npm/v/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
 [![NPM Downloads](https://flat.badgen.net/npm/dt/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
 [![Docker Pulls](https://flat.badgen.net/docker/pulls/jakowenko/watchtower)](https://hub.docker.com/r/jakowenko/watchtower)
 
 # Watchtower
 
-Watch Docker containers and check for image updates on Docker Hub.
-
-This project was inspired by [containrrr/watchtower](https://github.com/containrrr/watchtower) and only watches for changes from the Docker Hub API versus pulling down the image to compare it.
+Watch Docker containers and check for image updates on Docker Hub. Can be used to monitor for updates or automatically update existing containers with the new image.
 
 ```shell
 ----------------------------------------------
 watching 8 containers @ 06/08/2020 02:36:49 UTC
 ----------------------------------------------
-2 update found
+2 updates found
 ----------------------------------------------
 * portainer/portainer:latest | 15 minutes ago
-* homeassistant/home-assistant:stable | 4 hours ago
+* grafana/grafana:latest | 4 hours ago
 ----------------------------------------------
 downloading images
 ----------------------------------------------
 portainer/portainer:latest
-homeassistant/home-assistant:stable
+grafana/grafana:latest
 ----------------------------------------------
-downloads complete in 6 second
+downloads complete in 13 seconds
 ----------------------------------------------
 recreating containers
 ----------------------------------------------
 portainer
-home-assistant
+grafana
 ----------------------------------------------
-recreations complete in 2 seconds
+recreations complete in 6 seconds
 ----------------------------------------------
 ```
 
