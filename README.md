@@ -8,27 +8,24 @@ Watch Docker containers and check for image updates on Docker Hub. Can be used t
 
 ```shell
 ------------------------------------------------
-watching 19 containers @ 06/08/2020 09:40:26 EDT
+watching 10 containers @ 06/09/2020 01:02:01 EDT
 ------------------------------------------------
 2 updates found
+grafana/grafana:latest | 3 hours ago
+portainer/portainer:latest | 15 minutes ago
 ------------------------------------------------
-* portainer/portainer:latest | 15 minutes ago
-* grafana/grafana:latest | 4 hours ago
-------------------------------------------------
-downloading images
-------------------------------------------------
-portainer/portainer:latest
+downloading 2 images
 grafana/grafana:latest
+portainer/portainer:latest
+downloads complete in 15 seconds
 ------------------------------------------------
-downloads complete in 13 seconds
-------------------------------------------------
-recreating containers
-------------------------------------------------
-portainer
+recreating 2 containers
 grafana
+portainer
+recreations complete in 11 seconds
 ------------------------------------------------
-recreations complete in 6 seconds
-------------------------------------------------
+0 images pruned 
+0 volumes pruned 
 ```
 
 ## Install
@@ -119,6 +116,8 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 | AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and restart the container with the same configuration |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
 | DB_MEMORY | `true` | Whether to store the database in memory or on disk |
+| PRUNE_IMAGES | `false` | Remove all unused images |
+| PRUNE_VOLUMES | `false` | Remove all unused local volumes |
 | TZ | `UTC` | Timezone used in logs |
 | TIME_FORMAT | `MM/DD/YYYY hh:mm:ss` | Format of time used in logging and notifications |
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
