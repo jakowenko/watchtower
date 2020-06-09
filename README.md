@@ -7,28 +7,28 @@
 Watch Docker containers and check for image updates on Docker Hub. Can be used to monitor for updates or automatically update existing containers with the new image.
 
 ```shell
-----------------------------------------------
-watching 8 containers @ 06/08/2020 02:36:49 UTC
-----------------------------------------------
+------------------------------------------------
+watching 19 containers @ 06/08/2020 09:40:26 EDT
+------------------------------------------------
 2 updates found
-----------------------------------------------
+------------------------------------------------
 * portainer/portainer:latest | 15 minutes ago
 * grafana/grafana:latest | 4 hours ago
-----------------------------------------------
+------------------------------------------------
 downloading images
-----------------------------------------------
+------------------------------------------------
 portainer/portainer:latest
 grafana/grafana:latest
-----------------------------------------------
+------------------------------------------------
 downloads complete in 13 seconds
-----------------------------------------------
+------------------------------------------------
 recreating containers
-----------------------------------------------
+------------------------------------------------
 portainer
 grafana
-----------------------------------------------
+------------------------------------------------
 recreations complete in 6 seconds
-----------------------------------------------
+------------------------------------------------
 ```
 
 ## Install
@@ -111,6 +111,8 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 
 ## Options
 
+Options are passed to Watchtower with environment variables or by using a `.env` file in the root directory of your project.
+
 | Name | Default | Description |
 |--|--|--|
 | WATCH_ALL | `false` | Watch all running containers |
@@ -132,7 +134,9 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 
 ## Labels
 
-Labels can be used on containers to include or exclude them from being watched.
+Labels can used to:
+ - Include or exclude specific containers from being watched
+ - Automatically pull the newest image and recreate the container when Watchtower starts
 
 **Enable**
 
@@ -154,4 +158,15 @@ services:
     image: example/example-dont-watch
     labels:
       - 'watchtower.enable=false'
+```
+
+**Update on Start**
+```yaml
+version: '3.7'
+
+services:
+  example:
+    image: example/example-watch
+    labels:
+      - 'watchtower.update-on-start=true'
 ```
