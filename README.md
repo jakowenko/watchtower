@@ -24,8 +24,8 @@ grafana
 portainer
 recreations complete in 11 seconds
 ------------------------------------------------
-0 images pruned 
-0 volumes pruned 
+2 images pruned | 54.50 MB
+0 volumes pruned
 ```
 
 ## Install
