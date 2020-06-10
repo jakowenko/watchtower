@@ -120,6 +120,7 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 | PRUNE_VOLUMES | `false` | Remove all unused local volumes |
 | TZ | `UTC` | Timezone used in logs |
 | TIME_FORMAT | `MM/DD/YYYY hh:mm:ss` | Format of time used in logging and notifications |
+| TELEMETRY | `true` | Pass telemetry data to help improve Watchtower
 | IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
 | NOTIFY_TYPE ||Type of notification: `http`, `email` |
 | NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
