@@ -47,7 +47,7 @@ watchtower.run();
 
 **Docker**
 ```shell
-docker run \
+docker run -d \
   --name=watchtower \
   -e WATCH_ALL=true \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
