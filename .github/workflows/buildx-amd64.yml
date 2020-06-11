@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - beta
-      - master
 
 jobs:
   buildx:
@@ -20,9 +19,6 @@ jobs:
         if: endsWith(github.ref, '/master')
         run: |
           echo "::set-env name=TAG::latest"
-      -
-        name: Echo Name
-        run: echo "${TAG}"
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -47,7 +43,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./dist/Dockerfile ./dist
+            --file ./dist/Dockerfile.beta ./dist
       -
         name: Docker Login
         env:
@@ -64,7 +60,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./dist/Dockerfile ./dist
+            --file ./dist/Dockerfile.beta ./dist
       -
         name: Docker Check Manifest
         run: |
