@@ -34,7 +34,7 @@ jobs:
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:test \
-            --file ./dist/Dockerfile ./
+            --file ./dist/Dockerfile ./dist
       -
         name: Docker Login
         env:
@@ -51,7 +51,7 @@ jobs:
             --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:test \
-            --file ./dist/Dockerfile ./
+            --file ./dist/Dockerfile ./dist
       -
         name: Docker Check Manifest
         run: |
