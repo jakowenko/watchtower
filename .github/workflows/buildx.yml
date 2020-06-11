@@ -10,13 +10,8 @@ jobs:
   buildx:
     runs-on: ubuntu-latest
     steps:
-      - name: Set env to staging
-        if: endsWith(github.ref, '/develop')
-        run: |
-          echo "::set-env name=TAG::latest"
-        else:
-        run: |
-          echo "::set-env name=TAG::beta"
+      - name: Extract Branch Name
+        run: echo "::set-env name=BRANCH::$(echo ${GITHUB_REF##*/})"
       # -
       #   name: Checkout
       #   uses: actions/checkout@v2
