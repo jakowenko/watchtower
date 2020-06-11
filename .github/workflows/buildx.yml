@@ -49,7 +49,7 @@ jobs:
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --platform linux/amd64 \
-            --output "type=image,push=false" \
+            --output "type=image,push=true" \
             --tag jakowenko/watchtower:test \
             --file ./dist/Dockerfile ./dist
       -
