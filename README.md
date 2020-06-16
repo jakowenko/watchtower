@@ -17,15 +17,19 @@ portainer/portainer:latest | 15 minutes ago
 downloading 2 images
 grafana/grafana:latest
 portainer/portainer:latest
-downloads complete in 15 seconds
+downloads complete in 13.28 seconds
 ------------------------------------------------
 recreating 2 containers
 grafana
 portainer
-recreations complete in 11 seconds
+recreations complete in 4.57 seconds
 ------------------------------------------------
-2 images pruned | 54.50 MB
-0 volumes pruned
+pruning images & volumes
+2 images | 54.50 MB
+0 volumes
+pruning complete in 1.02 seconds
+-----------------------------------------------
+run complete in 19.46 seconds
 ```
 
 ## Install
