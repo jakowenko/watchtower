@@ -4,7 +4,7 @@
 
 # Watchtower
 
-Watch Docker containers and check for image updates on Docker Hub. Can be used to monitor for updates or automatically update existing containers with the new image.
+Watch Docker containers and check for image updates on Docker Hub. Watchtower can be used to monitor for updates or automatically update existing containers with the new image.
 
 ```shell
 ------------------------------------------------
@@ -68,8 +68,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
-## What triggers notifications?
-There are currently two ways notifications can be triggered.
+## How are updates detected?
+There are currently two ways Watchtower checks for image updates.
 
  - If the `last_updated` value on Docker Hub is newer than your containers `createdAt` value.
  - If the `last_updated` value on Docker Hub changes while Watchtower is running.
@@ -113,7 +113,8 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 | Name | Default | Description |
 |--|--|--|
 | WATCH_ALL | `false` | Watch all running containers |
-| AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and restart the container with the same configuration |
+| AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and recreate the container with the same configuration |
+| UPDATE_ON_START | `false` | Automatically pull new images and recreate all containers when Watchtower starts |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
 | DB_MEMORY | `true` | Whether to store the database in memory or on disk |
 | PRUNE_IMAGES | `false` | Remove all unused images |
