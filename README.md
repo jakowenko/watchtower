@@ -1,5 +1,5 @@
-[![NPM Version](https://flat.badgen.net/npm/v/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
-[![NPM Downloads](https://flat.badgen.net/npm/dt/watchtower-docker)](https://www.npmjs.com/package/watchtower-docker)
+[![NPM Version](https://flat.badgen.net/npm/v/@jakowenko/watchtower)](https://www.npmjs.com/package/@jakowenko/watchtower)
+[![NPM Downloads](https://flat.badgen.net/npm/dt/@jakowenko/watchtower)](https://www.npmjs.com/package/@jakowenko/watchtower)
 [![Docker Pulls](https://flat.badgen.net/docker/pulls/jakowenko/watchtower)](https://hub.docker.com/r/jakowenko/watchtower)
 
 # Watchtower
@@ -35,7 +35,7 @@ run complete in 19.46 seconds
 ## Install
 
 **Node.js**
-`npm install watchtower-docker`
+`npm install @jakowenko/watchtower`
 
 **Docker**
 `docker pull jakowenko/watchtower`
@@ -44,7 +44,7 @@ run complete in 19.46 seconds
 
 **Node.js**
 ```js
-const watchtower = require('watchtower-docker');
+const watchtower = require('@jakowenko/watchtower');
 
 watchtower.run();
 ```
