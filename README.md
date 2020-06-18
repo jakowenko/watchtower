@@ -53,7 +53,6 @@ watchtower.run();
 ```shell
 docker run -d \
   --name=watchtower \
-  -e WATCH_ALL=true \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   jakowenko/watchtower
 ```
@@ -66,8 +65,6 @@ services:
     container_name: watchtower
     image: jakowenko/watchtower
     restart: unless-stopped
-    environment:
-      WATCH_ALL: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
@@ -112,11 +109,9 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 
 ## Options
 
-Options are passed to Watchtower with environment variables or by using a `.env` file in the root directory of your project.
-
 | Name | Default | Description |
 |--|--|--|
-| WATCH_ALL | `false` | Watch all running containers |
+| WATCH_ALL | `true` | Watch all running containers |
 | AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and recreate the container with the same configuration |
 | UPDATE_ON_START | `false` | Automatically pull new images and recreate all containers when Watchtower starts |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
@@ -126,8 +121,8 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 | TZ | `UTC` | Timezone used in logs |
 | TIME_FORMAT | `MM/DD/YYYY hh:mm:ss` | Format of time used in logging and notifications |
 | TELEMETRY | `true` | Pass telemetry data to help improve Watchtower
-| IMAGES || Comma separated list of extra Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
-| NOTIFY_TYPE ||Type of notification: `http`, `email` |
+| EXTRA_IMAGES || Comma separated list of Docker Hub images to watch (`cdr/code-server, esphome/esphome:dev`)
+| NOTIFY_TYPE || Type of notification: `http`, `email` |
 | NOTIFY_SUBJECT | `Watchtower` | Subject value passed in notification |
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
 | NOTIFY_EMAIL_HOST || SMTP server to send emails |
@@ -136,6 +131,48 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 | NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
 | NOTIFY_EMAIL_FROM_NAME | `Notify` | Sender name for the email notifications |
 | NOTIFY_EMAIL_TO || Email address to which notifications will be sent |
+
+## Option Usage ##
+
+Options are passed to Watchtower with environment variables or by using a `.env` file in the root directory of your project.
+
+**Node.js**
+```js
+const watchtower = require('@jakowenko/watchtower');
+
+watchtower.run({
+  TZ: 'America/Detroit',
+  PRUNE_IMAGES: true,
+  PRUNE_VOLUMES: true
+});
+```
+
+**Docker** 
+```shell
+docker run -d \
+  --name=watchtower \
+  -e TZ=America/Detroit \
+  -e PRUNE_IMAGES=true \
+  -e PRUNE_VOLUMES=true \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  jakowenko/watchtower
+```
+
+```yaml
+version: '3.7'
+
+services:
+  watchtower:
+    container_name: watchtower
+    image: jakowenko/watchtower
+    restart: unless-stopped
+    environment:
+      TZ: America/Detroit
+      PRUNE_IMAGES: 'true'
+      PRUNE_VOLUMES: 'true'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+```
 
 ## Labels
 
