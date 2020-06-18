@@ -7,8 +7,7 @@
     "/lib"
   ],
   "scripts": {
-    "start": "node ./dist/index.js",
-    "dev": "nodemon --ignore './data/' ./lib/test.js"
+    "start": "nodemon --ignore './data/' ./lib/test.js"
   },
   "repository": {
     "type": "git",
