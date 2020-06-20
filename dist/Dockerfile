@@ -1,8 +1,8 @@
 FROM node:12-alpine
-RUN apk update && apk add bash python make g++ && rm -rf /var/cache/apk/*
 VOLUME /user/watchtower/data
 WORKDIR /usr/watchtower
 COPY index.js /usr/watchtower/
-RUN npm init -y
-RUN npm install @jakowenko/watchtower
+RUN apk update && apk add bash python make g++ && rm -rf /var/cache/apk/* && \
+  npm init -y && \
+  npm install @jakowenko/watchtower
 CMD ["node", "index.js"]
