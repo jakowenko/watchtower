@@ -127,6 +127,7 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 | NOTIFY_HTTP_URL || URL POST request is sent to for notifications |
 | NOTIFY_EMAIL_HOST || SMTP server to send emails |
 | NOTIFY_EMAIL_PORT | `587` | Port used to connect to the SMTP server |
+| NOTIFY_EMAIL_IGNORE_TLS | `false` | Ignore TLS with the SMTP server |
 | NOTIFY_EMAIL_USERNAME || Username to authenticate with the SMTP server |
 | NOTIFY_EMAIL_PASSWORD || Password to authenticate with the SMTP server |
 | NOTIFY_EMAIL_FROM_NAME | `Notify` | Sender name for the email notifications |
