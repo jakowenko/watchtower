@@ -13,6 +13,7 @@ jobs:
         name: Set tag to beta
         run: |
           echo "::set-env name=TAG::beta"
+          echo "::set-env name=DOCKERFILE::Dockerfile.beta"
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +27,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./docker/Dockerfile ./docker
+            --file ./docker/${DOCKERFILE} ./docker
       -
         name: Docker Login
         env:
@@ -41,7 +42,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./docker/Dockerfile ./docker
+            --file ./docker/${DOCKERFILE} ./docker
       -
         name: Docker Check Manifest
         run: |
