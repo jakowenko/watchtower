@@ -7,7 +7,8 @@
     "/lib"
   ],
   "scripts": {
-    "start": "nodemon --ignore './data/' ./lib/test.js"
+    "start": "nodemon --ignore './data/' ./lib/test.js",
+    "update": "nodemon --ignore './data/' ./lib/test.js --update-helper"
   },
   "repository": {
     "type": "git",
