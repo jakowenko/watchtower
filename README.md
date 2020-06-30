@@ -113,6 +113,7 @@ If `NOTIFY_TYPE` is set to `http` then notifications will be POSTed to `NOTIFY_H
 |--|--|--|
 | WATCH_ALL | `true` | Watch all running containers |
 | AUTO_UPDATE | `false` | When an update is detected, Watchtower will pull the newest image and recreate the container with the same configuration |
+| AUTO_UPDATE_WATCHTOWER | `false` | Creates a helper container to aid in updating the Watchtower container |
 | UPDATE_ON_START | `false` | Automatically pull new images and recreate all containers when Watchtower starts |
 | TIMER | `30` | Time in minutes before rechecking containers. If set to `0`, Watchtower will only run once |
 | DB_MEMORY | `true` | Whether to store the database in memory or on disk |
