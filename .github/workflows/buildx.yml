@@ -42,7 +42,7 @@ jobs:
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./dist/Dockerfile ./dist
+            --file ./docker/Dockerfile ./docker
       -
         name: Docker Login
         env:
@@ -57,7 +57,7 @@ jobs:
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=true" \
             --tag jakowenko/watchtower:${TAG} \
-            --file ./dist/Dockerfile ./dist
+            --file ./docker/Dockerfile ./docker
       -
         name: Docker Check Manifest
         run: |
