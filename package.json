@@ -1,6 +1,6 @@
 {
   "name": "@jakowenko/watchtower",
-  "version": "1.3.0-beta.16",
+  "version": "1.3.0-beta.17",
   "description": "watches docker containers and checks docker hub for image update",
   "main": "./lib/watchtower.js",
   "files": [
