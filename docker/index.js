@@ -1,3 +1,3 @@
 const watchtower = require('@jakowenko/watchtower');
 
-watchtower.run();
+watchtower.run({ docker: true });

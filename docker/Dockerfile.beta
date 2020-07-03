@@ -4,5 +4,5 @@ WORKDIR /usr/watchtower
 COPY index.js /usr/watchtower/
 RUN apk update && apk add bash python make g++ && rm -rf /var/cache/apk/* && \
   npm init -y && \
-  npm install @jakowenko/watchtower
+  npm install @jakowenko/watchtower@beta
 CMD ["node", "index.js"]
