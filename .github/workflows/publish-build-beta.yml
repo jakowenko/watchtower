@@ -1,8 +1,7 @@
 name: Publish / Build (Beta)
 
 on:
-  release:
-    types: [prereleased]
+  push:
     branches:
       - beta
 
