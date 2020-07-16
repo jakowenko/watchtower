@@ -5,7 +5,6 @@ on:
     types: [created]
     branches:
       - beta
-      - master
 
 jobs:
   publish-npm:
