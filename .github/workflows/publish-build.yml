@@ -1,13 +1,35 @@
-name: buildx
+name: Publish / Build
 
 on:
-  push:
+  release:
+    types: [created]
     branches:
-      - master
       - beta
+      - master
 
 jobs:
-  buildx:
+  publish-npm:
+    if: github.repository == 'jakowenko/watchtower'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1.1.0
+        with:
+          node-version: 12.x
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm publish --tag beta --access public
+        if: endsWith(github.ref, '/beta')
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish --access public
+        if: endsWith(github.ref, '/master')
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  build-docker:
+    if: github.repository == 'jakowenko/watchtower'
+    needs: publish-npm
     runs-on: ubuntu-latest
     steps:
       - 
@@ -28,15 +50,6 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v3
-      # -
-      #   name: Cache Docker layers
-      #   uses: actions/cache@v2
-      #   id: cache
-      #   with:
-      #     path: /tmp/.buildx-cache
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-buildx-
       -
         name: Docker Buildx (build)
         run: |
