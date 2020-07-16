@@ -1,0 +1,70 @@
+name: Publish / Build (Beta)
+
+on:
+  push:
+    branches:
+      - beta
+
+jobs:
+  publish-npm:
+    if: github.repository == 'jakowenko/watchtower'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1.1.0
+        with:
+          version: 12.x
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm publish --tag beta --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  build-docker:
+    if: github.repository == 'jakowenko/watchtower'
+    needs: publish-npm
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Set env variables
+        run: |
+          echo "::set-env name=TAG::beta"
+          echo "::set-env name=DOCKERFILE::Dockerfile.beta"
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+      -
+        name: Docker Buildx (build)
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --output "type=image,push=false" \
+            --tag jakowenko/watchtower:${TAG} \
+            --file ./docker/${DOCKERFILE} ./docker
+      -
+        name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+      -
+        name: Docker Buildx (push)
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --output "type=image,push=true" \
+            --tag jakowenko/watchtower:${TAG} \
+            --file ./docker/${DOCKERFILE} ./docker
+      -
+        name: Docker Check Manifest
+        run: |
+          docker run --rm mplatform/mquery jakowenko/watchtower:${TAG}
+      -
+        name: Clear
+        if: always()
+        run: |
+          rm -f ${HOME}/.docker/config.json
