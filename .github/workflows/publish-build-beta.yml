@@ -1,4 +1,4 @@
-name: Publish / Build
+name: Publish / Build (Beta)
 
 on:
   release:
@@ -18,7 +18,7 @@ jobs:
           node-version: 12.x
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm publish --access public
+      - run: npm publish --tag beta --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
@@ -27,11 +27,11 @@ jobs:
     needs: publish-npm
     runs-on: ubuntu-latest
     steps:
-      -
+      - 
         name: Set env variables
         run: |
-          echo "::set-env name=TAG::latest"
-          echo "::set-env name=DOCKERFILE::Dockerfile"
+          echo "::set-env name=TAG::beta"
+          echo "::set-env name=DOCKERFILE::Dockerfile.beta"
       -
         name: Checkout
         uses: actions/checkout@v2
