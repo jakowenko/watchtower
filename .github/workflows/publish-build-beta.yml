@@ -40,7 +40,7 @@ jobs:
       - name: Docker Buildx (build)
         run: |
           docker buildx build \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --platform linux/amd64 \
             --output "type=image,push=false" \
             --tag jakowenko/watchtower:${TAG} \
             --file ./docker/${DOCKERFILE} ./docker
@@ -53,7 +53,7 @@ jobs:
       - name: Docker Buildx (push)
         run: |
           docker buildx build \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag jakowenko/watchtower:${TAG} \
             --file ./docker/${DOCKERFILE} ./docker
