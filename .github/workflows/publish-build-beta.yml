@@ -26,6 +26,8 @@ jobs:
     if: github.repository == 'jakowenko/watchtower'
     needs: publish-npm
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
       - name: Set env variables
         run: |
