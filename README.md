@@ -47,7 +47,7 @@ run complete in 19.46 seconds
 **Node.js**
 
 ```js
-const watchtower = require("@jakowenko/watchtower");
+const watchtower = require('@jakowenko/watchtower');
 
 watchtower.run();
 ```
@@ -62,7 +62,7 @@ docker run -d \
 ```
 
 ```yaml
-version: "3.7"
+version: '3.7'
 
 services:
   watchtower:
@@ -148,10 +148,10 @@ Options are passed to Watchtower with environment variables or by using a `.env`
 **Node.js**
 
 ```js
-const watchtower = require("@jakowenko/watchtower");
+const watchtower = require('@jakowenko/watchtower');
 
 watchtower.run({
-  TZ: "America/Detroit",
+  TZ: 'America/Detroit',
   PRUNE_IMAGES: true,
   PRUNE_VOLUMES: true,
 });
@@ -170,7 +170,7 @@ docker run -d \
 ```
 
 ```yaml
-version: "3.7"
+version: '3.7'
 
 services:
   watchtower:
@@ -179,8 +179,8 @@ services:
     restart: unless-stopped
     environment:
       TZ: America/Detroit
-      PRUNE_IMAGES: "true"
-      PRUNE_VOLUMES: "true"
+      PRUNE_IMAGES: 'true'
+      PRUNE_VOLUMES: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
@@ -195,35 +195,35 @@ Labels can used to:
 **Enable**
 
 ```yaml
-version: "3.7"
+version: '3.7'
 
 services:
   example:
     image: example/example-watch
     labels:
-      - "watchtower.enable=true"
+      - 'watchtower.enable=true'
 ```
 
 **Disable**
 
 ```yaml
-version: "3.7"
+version: '3.7'
 
 services:
   example:
     image: example/example-dont-watch
     labels:
-      - "watchtower.enable=false"
+      - 'watchtower.enable=false'
 ```
 
 **Update on Start**
 
 ```yaml
-version: "3.7"
+version: '3.7'
 
 services:
   example:
     image: example/example-watch
     labels:
-      - "watchtower.update-on-start=true"
+      - 'watchtower.update-on-start=true'
 ```
