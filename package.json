@@ -25,7 +25,7 @@
   "author": "David Jakowenko",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.22.0",
     "better-sqlite3": "^7.1.2",
     "chalk": "^4.1.0",
     "dockerode": "^3.2.1",
