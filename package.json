@@ -27,7 +27,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "better-sqlite3": "^7.1.2",
-    "chalk": "^4.1.0",
+    "chalk": "^5.0.1",
     "dockerode": "^3.2.1",
     "dotenv": "^8.2.0",
     "execution-time": "^1.4.1",
